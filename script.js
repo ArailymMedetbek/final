@@ -32,24 +32,22 @@ $('#showWinner').on('click', function () {
         i++;
         console.log(`Player ${i}: ${player}`);
     });
+    console.log(team1);
     console.log("Team 2:");
     lineup2.forEach(function (player, i = 1) {
         i++;
         console.log(`Player ${i}: ${player}`);
     });
-    console.log(team1);
     console.log(team2);
     if (isNaN(team1) || isNaN(team2)) {
         $('#error_msg').text('Please, enter number of goals scored by each team!').show();
     } else if (team1 + team2 > 7) {
         $('#error_msg').text('Sum of goals must be less than 7!').show();
-    } else if (lineup1.length < 11 || lineup2.length < 11) {
-        $('#error_msg').text('Each team must consist of minimum 11 players!').show();
+    } else if (lineup1.length > 11 || lineup2.length > 11) {
+        $('#error_msg').text('Each team must consist of maximum 11 players!').show();
     } else {
         $('#winner_header').text(`${team1 === team2 ? "Draw!" : team1 > team2 ? "Team 1 Winner!" : "Team 2 Winner"}`);
         $('#score').text(`${team1} : ${team2}`);
-        $('#comb1').text(print_all_sum(team1));
-        $('#comb2').text(print_all_sum(team2));
         $('#result').show();
     }
     let comb1 = print_all_sum(team1 + team2);
